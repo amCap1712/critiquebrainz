@@ -1,4 +1,6 @@
 from unittest.mock import MagicMock
+import critiquebrainz.db.users as db_users
+from critiquebrainz.db.user import User
 
 import critiquebrainz.frontend.external.musicbrainz_db.artist as mb_artist
 import critiquebrainz.frontend.external.musicbrainz_db.release_group as mb_release_group
@@ -34,6 +36,9 @@ class ArtistViewsTestCase(FrontendTestCase):
         super(ArtistViewsTestCase, self).setUp()
         mb_artist.get_artist_by_id = MagicMock()
         mb_release_group.browse_release_groups = MagicMock(side_effect=return_release_groups)
+
+        self.reviewer = User(db_users.get_or_create(1, "aef06569-098f-4218-a577-b413944d9493",
+                                                    new_user_data={"display_name": u"Reviewer"}))
 
     def test_artist_page(self):
         # Basic artist page should be available.
