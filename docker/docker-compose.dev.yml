@@ -33,9 +33,8 @@ services:
     ports:
       - "9000:80"
     depends_on:
-      - db
+      - cbdb
       - critiquebrainz_redis
-      - musicbrainz_db
       - static_builder
 
   critiquebrainz_redis:
