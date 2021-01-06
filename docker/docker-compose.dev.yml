@@ -17,7 +17,7 @@ services:
       - ../data/pgdata:/var/lib/postgresql/data/pgdata:z
       - ./pg_custom:/docker-entrypoint-initdb.d/
     ports:
-      - "15432:5432"
+      - "15632:5432"
 
   critiquebrainz:
     build:
