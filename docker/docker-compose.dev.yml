@@ -31,7 +31,7 @@ services:
       FLASK_APP: critiquebrainz.frontend
       FLASK_ENV: development
     ports:
-      - "80:80"
+      - "9000:80"
     depends_on:
       - db
       - critiquebrainz_redis
@@ -59,3 +59,7 @@ services:
     command: npm run dev
     volumes:
       - ..:/code:z
+networks:
+  default:
+    external:
+      name: musicbrainzdocker_default
