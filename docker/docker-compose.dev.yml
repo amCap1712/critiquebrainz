@@ -6,7 +6,7 @@ volumes:
 
 services:
 
-  db:
+  cbdb:
     image: postgres:12.3
     environment:
       POSTGRES_USER: critiquebrainz
@@ -40,17 +40,6 @@ services:
 
   critiquebrainz_redis:
     image: redis:4.0-alpine
-
-  musicbrainz_db:
-    image: metabrainz/musicbrainz-test-database:beta
-    volumes:
-      - ../data/mbdata:/var/lib/postgresql/data/pgdata:z
-    environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      MB_IMPORT_DUMPS: "true"
-      POSTGRES_HOST_AUTH_METHOD: "trust"
-    ports:
-      - "5430:5432"
 
   static_builder:
     build:

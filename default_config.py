@@ -4,7 +4,7 @@ DEBUG = False
 SECRET_KEY = "CHANGE_THIS"
 
 # Database
-SQLALCHEMY_DATABASE_URI = "postgresql://critiquebrainz:critiquebrainz@db:5432/critiquebrainz"
+SQLALCHEMY_DATABASE_URI = "postgresql://critiquebrainz:critiquebrainz@cbdb:5432/critiquebrainz"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # MusicBrainz Database
