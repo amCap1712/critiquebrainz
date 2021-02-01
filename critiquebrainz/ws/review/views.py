@@ -366,14 +366,7 @@ def review_list_handler():
 
     # TODO(roman): Ideally caching logic should live inside the model. Otherwise it
     # becomes hard to track all this stuff.
-    cache_key = cache.gen_key('list', entity_id, user_id, sort, limit, offset, language)
-    cached_result = cache.get(cache_key, REVIEW_CACHE_NAMESPACE)
-    if cached_result:
-        reviews = cached_result['reviews']
-        count = cached_result['count']
-
-    else:
-        reviews, count = db_review.list_reviews(
+    reviews, count = db_review.list_reviews(
             entity_id=entity_id,
             entity_type=entity_type,
             user_id=user_id,
@@ -381,12 +374,8 @@ def review_list_handler():
             limit=limit,
             offset=offset,
             language=language,
-        )
-        reviews = [db_review.to_dict(p) for p in reviews]
-        cache.set(cache_key, {
-            'reviews': reviews,
-            'count': count,
-        }, namespace=REVIEW_CACHE_NAMESPACE)
+    )
+    reviews = [db_review.to_dict(p) for p in reviews]
 
     return jsonify(limit=limit, offset=offset, count=count, reviews=reviews)
 
