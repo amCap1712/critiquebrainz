@@ -35,22 +35,10 @@ services:
     depends_on:
       - db
       - critiquebrainz_redis
-      - musicbrainz_db
       - static_builder
 
   critiquebrainz_redis:
     image: redis:4.0-alpine
-
-  musicbrainz_db:
-    image: metabrainz/musicbrainz-test-database:beta
-    volumes:
-      - ../data/mbdata:/var/lib/postgresql/data/pgdata:z
-    environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      MB_IMPORT_DUMPS: "true"
-      POSTGRES_HOST_AUTH_METHOD: "trust"
-    ports:
-      - "5430:5432"
 
   static_builder:
     build:
@@ -59,3 +47,8 @@ services:
     command: npm run dev
     volumes:
       - ..:/code:z
+
+networks:
+  default:
+    external:
+      name: musicbrainzdocker_default
