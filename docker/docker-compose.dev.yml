@@ -31,7 +31,7 @@ services:
       FLASK_APP: critiquebrainz.frontend
       FLASK_ENV: development
     ports:
-      - "80:80"
+      - "666:80"
     depends_on:
       - db
       - critiquebrainz_redis
