@@ -39,3 +39,8 @@ def about():
 @frontend_bp.route('/guidelines')
 def guidelines():
     return render_template('index/guidelines.html')
+
+
+@frontend_bp.route('/debug-sentry')
+def trigger_error():
+    division_by_zero = 1 / 0
